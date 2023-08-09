@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #BMI {
+            font-size: 4em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        #text {
+            font-size: 2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        input {
+            text-align: center;
+        }
+
+        button {
+            border: 1px solid black;
+            width: 120px;
+            background-color: transparent;
+        }
+
+        button:hover {
+            background-color: black;
+            color: white;
+        }
+    </style>
+    <title>BMI-Calculator</title>
+</head>
+
+<body>
+
+    <label id="BMI">0</label>
+    <label id="text"></label>
+    <div>
+        <img id="profil">
+        <input type=" text" id="weight" placeholder="weight">
+        <input type="text" id="height" placeholder="height">
+        <button id="calculate">Calculate</button>
+    </div>
+
+
+    <script>
+
+        // bmi = weight / (height * height);
+
+        // ToDo: Bilder sollten nach angehängt werden diese sind bereits im img gespeichert
+
+        document.getElementById("calculate").onclick = function () {
+            var height = document.getElementById("height").value;
+            var weight = document.getElementById("weight").value;
+            var imgElement = document.getElementById("profil");
+
+            var untergewicht = "Sie sind im Untergewichts Bereich";
+            var normalgewicht = "Sie sind im Normalem Bereich";
+            var übergewicht = "Sie sind im Übergewichts Bereich";
+            var s_übergewicht = "Sie sind im Starken Übergewicht";
+            var adipositas = "Sie sind Adipositas";
+
+            var bmi = (weight / (height * height)).toFixed(2);
+
+            document.getElementById("BMI").innerHTML = bmi;
+
+            if (bmi < 18.5) {
+                document.getElementById("BMI").style.color = "lightblue";
+                document.getElementById("text").innerHTML = untergewicht;
+                imgElement.src = "./img/under.jpg";
+            } else if (bmi >= 18, 5 && bmi < 24.9) {
+                document.getElementById("BMI").style.color = "lightgreen";
+                document.getElementById("text").innerHTML = normalgewicht;
+                imgElement.src = "./img/norm.jpg";
+            } else if (bmi >= 25 && bmi < 29.9) {
+                document.getElementById("BMI").style.color = "#FFCC00";
+                document.getElementById("text").innerHTML = übergewicht;
+                imgElement.src = "./img/over.jpg";
+            } else if (bmi >= 30 && bmi < 34.9) {
+                document.getElementById("BMI").style.color = "orange";
+                document.getElementById("text").innerHTML = s_übergewicht;
+                imgElement.src = "./img/over2.jpg";
+            } else {
+                document.getElementById("BMI").style.color = "red";
+                document.getElementById("text").innerHTML = adipositas;
+                imgElement.src = "./img/adi.jpg";
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>

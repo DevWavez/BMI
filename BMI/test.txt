@@ -1,0 +1,35 @@
+function calculateBMI() {
+        var height = document.getElementById("height").value;
+        var weight = document.getElementById("weight").value;
+        var imgElement = document.getElementById("profil");
+
+        var untergewicht = "Sie sind im Untergewichts-Bereich";
+        var normalgewicht = "Sie sind im Normalbereich";
+        var übergewicht = "Sie sind im Übergewichts-Bereich";
+        var s_übergewicht = "Sie sind im Starken Übergewicht";
+        var adipositas = "Sie haben Adipositas";
+
+        var bmi = weight / (height * height);
+
+        document.getElementById("BMI").innerHTML = bmi;
+
+        if (bmi < 18.5) {
+              document.getElementById("BMI").style.color = "lightblue";
+              document.getElementById("text").innerHTML = untergewicht;
+              imgElement.src = "./img/under";
+            } else if (bmi >= 18.5 && bmi < 24.9) {
+              document.getElementById("BMI").style.color = "lightgreen";
+              document.getElementById("text").innerHTML = normalgewicht;
+            } else if (bmi >= 25 && bmi < 29.9) {
+              document.getElementById("BMI").style.color = "#FFCC00";
+              document.getElementById("text").innerHTML = übergewicht;
+            } else if (bmi >= 30 && bmi < 34.9) {
+              document.getElementById("BMI").style.color = "orange";
+              document.getElementById("text").innerHTML = s_übergewicht;
+            } else {
+              document.getElementById("BMI").style.color = "red";
+              document.getElementById("text").innerHTML = adipositas;
+            }
+        }
+
+        document.getElementById("calculate").onclick = calculateBMI;
